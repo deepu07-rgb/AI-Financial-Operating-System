@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "id": "pythonembed-3.13-64",
+  "sort-version": "3.13.13",
+  "company": "PythonEmbed",
+  "tag": "3.13-64",
+  "install-for": [
+    "3.13.13-64",
+    "3.13-64",
+    "3-64"
+  ],
+  "run-for": [
+    {
+      "target": "python.exe",
+      "tag": "3.13.13-64"
+    },
+    {
+      "target": "python.exe",
+      "tag": "3.13-64"
+    },
+    {
+      "target": "python.exe",
+      "tag": "3-64"
+    }
+  ],
+  "alias": [],
+  "shortcuts": [
+    {
+      "kind": "pep514",
+      "Key": "PythonEmbed\\3.13",
+      "DisplayName": "Python 3.13.13 (embeddable)",
+      "SupportUrl": "https://www.python.org/",
+      "SysArchitecture": "64bit",
+      "SysVersion": "3.13",
+      "Version": "3.13.13",
+      "InstallPath": {
+        "_": "%PREFIX%",
+        "ExecutablePath": "%PREFIX%python.exe"
+      },
+      "Help": {
+        "Online Python Documentation": {
+          "_": "https://docs.python.org/3.13/"
+        }
+      }
+    },
+    {
+      "kind": "start",
+      "Name": "Python 3.13 (embeddable)",
+      "Items": [
+        {
+          "Name": "Python 3.13 (embeddable)",
+          "Target": "%PREFIX%python.exe",
+          "Icon": "%PREFIX%python.exe"
+        },
+        {
+          "Name": "Python 3.13 Online Documentation",
+          "Icon": "%SystemRoot%\\System32\\SHELL32.dll",
+          "IconIndex": 13,
+          "Target": "https://docs.python.org/3.13/"
+        }
+      ]
+    },
+    {
+      "kind": "uninstall",
+      "Publisher": "Python Software Foundation",
+      "HelpLink": "https://docs.python.org/3.13/"
+    }
+  ],
+  "display-name": "Python 3.13.13 (embeddable)",
+  "executable": ".\\python.exe",
+  "url": "https://www.python.org/ftp/python/3.13.13/python-3.13.13-embeddable-amd64.zip"
+}

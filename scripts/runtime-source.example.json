@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "pythonVersion": "3.13.5",
+  "pythonSource": "https://www.python.org/downloads/release/python-3135/",
+  "tesseractVersion": "REPLACE_WITH_REVIEWED_VERSION",
+  "tesseractSource": "https://github.com/tesseract-ocr/tesseract/releases",
+  "englishModelVersion": "REPLACE_WITH_REVIEWED_COMMIT_OR_RELEASE",
+  "englishModelSource": "https://github.com/tesseract-ocr/tessdata_fast/releases"
+}

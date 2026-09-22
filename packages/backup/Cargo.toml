@@ -1,0 +1,18 @@
+[package]
+name = "aifos-backup"
+version = "0.1.0"
+description = "Encrypted full-workspace backup, verification, restore, and portability for AIFOS"
+edition = "2021"
+rust-version = "1.85"
+license = "LicenseRef-Proprietary"
+publish = false
+
+[dependencies]
+age = { version = "=0.11.5", default-features = false }
+aifos-domain = { path = "../domain" }
+aifos-storage = { path = "../storage" }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+sha2 = "=0.11.0"
+tar = { version = "=0.4.46", default-features = false }
+thiserror = "=2.0.19"

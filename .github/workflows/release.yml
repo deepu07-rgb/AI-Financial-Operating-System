@@ -1,0 +1,106 @@
+name: Signed Windows release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: signed-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  windows-release:
+    name: Build, verify, and publish signed offline installer
+    runs-on: windows-latest
+    timeout-minutes: 60
+    environment: production-release
+    env:
+      AIFOS_UPDATE_PUBKEY: ${{ vars.AIFOS_UPDATE_PUBKEY }}
+      AIFOS_WINDOWS_CERT_SHA1: ${{ vars.AIFOS_WINDOWS_CERT_SHA1 }}
+      AIFOS_WINDOWS_PUBLISHER: ${{ vars.AIFOS_WINDOWS_PUBLISHER }}
+      AIFOS_WINDOWS_TIMESTAMP_URL: ${{ vars.AIFOS_WINDOWS_TIMESTAMP_URL }}
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out exact release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 10.33.0
+          run_install: false
+
+      - name: Install Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: 3.13.5
+          cache: pip
+          cache-dependency-path: services/document-worker/requirements.lock
+
+      - name: Install Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.14.0
+          cache: pnpm
+
+      - name: Install exact dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install exact Python verification dependencies
+        run: python -m pip install --disable-pip-version-check --requirement services/document-worker/requirements.lock
+
+      - name: Verify source before release
+        run: pnpm verify
+
+      - name: Validate tag and establish deterministic release inputs
+        shell: pwsh
+        run: |
+          $version = (Get-Content apps/desktop/package.json -Raw | ConvertFrom-Json).version
+          if ("${{ github.ref_name }}" -ne "v$version") { throw "Release tag must exactly match desktop version v$version." }
+          "SOURCE_DATE_EPOCH=$(git log -1 --format=%ct)" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "AIFOS_UPDATE_ENDPOINT=https://github.com/${{ github.repository }}/releases/latest/download/latest.json" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "AIFOS_RELEASE_BASE_URL=https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Download and verify reviewed offline runtime bundle
+        shell: pwsh
+        env:
+          AIFOS_RUNTIME_URL: ${{ vars.AIFOS_RUNTIME_URL }}
+          AIFOS_RUNTIME_SHA256: ${{ vars.AIFOS_RUNTIME_SHA256 }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:AIFOS_RUNTIME_URL)) { throw "AIFOS_RUNTIME_URL is required." }
+          if ($env:AIFOS_RUNTIME_URL -notmatch '^https://') { throw "Runtime URL must use HTTPS." }
+          if ($env:AIFOS_RUNTIME_SHA256 -notmatch '^[0-9a-f]{64}$') { throw "Runtime SHA-256 is invalid." }
+          $archive = Join-Path $env:RUNNER_TEMP "aifos-reviewed-runtime.zip"
+          $runtime = Join-Path $env:RUNNER_TEMP "aifos-reviewed-runtime"
+          Invoke-WebRequest -Uri $env:AIFOS_RUNTIME_URL -OutFile $archive
+          & scripts/expand-reviewed-runtime.ps1 -ArchivePath $archive -DestinationPath $runtime -ExpectedSha256 $env:AIFOS_RUNTIME_SHA256
+          "AIFOS_RELEASE_RUNTIME_DIR=$runtime" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Import Windows code-signing certificate
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_BASE64: ${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $certificatePath = Join-Path $env:RUNNER_TEMP "aifos-release.pfx"
+          [IO.File]::WriteAllBytes($certificatePath, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE_BASE64))
+          $password = ConvertTo-SecureString $env:WINDOWS_CERTIFICATE_PASSWORD -AsPlainText -Force
+          $certificate = Import-PfxCertificate -FilePath $certificatePath -CertStoreLocation Cert:\CurrentUser\My -Password $password
+          if ($certificate.Thumbprint -ne $env:AIFOS_WINDOWS_CERT_SHA1) { throw "Imported certificate thumbprint mismatch." }
+          Remove-Item -LiteralPath $certificatePath -Force
+
+      - name: Build and verify signed offline release
+        run: pnpm release:build
+
+      - name: Publish immutable GitHub release assets
+        shell: pwsh
+        run: gh release create "${{ github.ref_name }}" artifacts/release/* --verify-tag --generate-notes --title "AIFOS ${{ github.ref_name }}"

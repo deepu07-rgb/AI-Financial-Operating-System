@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-06T18:17:05Z",
+  "corpus": {
+    "name": "AIFOS CR-02 approved synthetic English manufacturing invoice corpus",
+    "sample_size": 12,
+    "supported_samples": 10,
+    "unsupported_samples": 2,
+    "contains_customer_data": false
+  },
+  "runtime": {
+    "python": "Python 3.13.13",
+    "tesseract": "tesseract v5.5.3.20260724",
+    "runtime_source": {
+      "schemaVersion": 1,
+      "pythonVersion": "3.13.13",
+      "pythonSource": "https://www.python.org/ftp/python/3.13.13/python-3.13.13-embeddable-amd64.zip",
+      "pythonSha256": "142666a4a9079507815d395b9bfb73546ec391003d385beb559a9d68fb240062",
+      "pythonSigner": "CN=Python Software Foundation, O=Python Software Foundation, L=Beaverton, S=Oregon, C=US",
+      "pythonWheels": [
+        "Pillow==12.3.0",
+        "pypdfium2==5.12.1",
+        "reportlab==5.0.0",
+        "charset-normalizer==3.4.9"
+      ],
+      "tesseractVersion": "5.5.3.20260724",
+      "tesseractSource": "https://github.com/tesseract-ocr/tesseract/releases/download/5.5.3/tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+      "tesseractSha256": "bee9e3434bd94fd65387d9be28cd467a41f61b1275383b55b0f59a1331270ae4",
+      "tesseractSigner": "CN=Universit\u00e4t Mannheim, O=Universit\u00e4t Mannheim, S=Baden-W\u00fcrttemberg, C=DE",
+      "tesseractSignatureStatus": "UnknownError",
+      "englishModelVersion": "eng.traineddata bundled by Tesseract 5.5.3.20260724",
+      "englishModelSource": "https://github.com/tesseract-ocr/tessdata_fast",
+      "englishModelSha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+    }
+  },
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "logical_cpu_count": 12
+  },
+  "metrics": {
+    "field_accuracy": {
+      "invoice_number": {
+        "correct": 10,
+        "evaluated": 10,
+        "accuracy": 1.0
+      },
+      "invoice_date": {
+        "correct": 10,
+        "evaluated": 10,
+        "accuracy": 1.0
+      },
+      "supplier": {
+        "correct": 10,
+        "evaluated": 10,
+        "accuracy": 1.0
+      },
+      "currency": {
+        "correct": 10,
+        "evaluated": 10,
+        "accuracy": 1.0
+      },
+      "total": {
+        "correct": 10,
+        "evaluated": 10,
+        "accuracy": 1.0
+      }
+    },
+    "processing_failure_rate": 0.0,
+    "mean_duration_ms": 972.9,
+    "median_duration_ms": 971.5,
+    "maximum_duration_ms": 996
+  },
+  "unsupported_cases": [
+    "password-protected PDF",
+    "handwritten invoice",
+    "non-English OCR models",
+    "files whose extension and byte signature disagree",
+    "documents larger than 250 MiB"
+  ],
+  "representative_corpus_process": {
+    "status": "Founder-controlled process defined; no customer document is included in this repository.",
+    "steps": [
+      "Obtain written customer consent or use founder-owned invoices.",
+      "Remove names, addresses, tax identifiers, bank details, and commercially sensitive line descriptions.",
+      "Record source class, scan quality, page count, and expected fields in a separate encrypted register.",
+      "Have two finance reviewers approve the ground truth before benchmark inclusion.",
+      "Run locally, publish aggregate metrics only, and delete temporary rendered pages."
+    ]
+  },
+  "results": [
+    {
+      "id": "synthetic-01",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 962,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "ARAVALI STEEL WORKS",
+        "invoice_number": "MFG-2026001",
+        "invoice_date": "01/08/2026",
+        "currency": "INR",
+        "total": "11375.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-02",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 974,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "NORTHSTAR FASTENERS",
+        "invoice_number": "MFG-2026002",
+        "invoice_date": "02/08/2026",
+        "currency": "INR",
+        "total": "12750.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-03",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 973,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "PRECISION CASTINGS",
+        "invoice_number": "MFG-2026003",
+        "invoice_date": "03/08/2026",
+        "currency": "INR",
+        "total": "14125.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-04",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 994,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "GREENFIELD PACKAGING",
+        "invoice_number": "MFG-2026004",
+        "invoice_date": "04/08/2026",
+        "currency": "INR",
+        "total": "15500.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-05",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 970,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "METRO INDUSTRIAL GASES",
+        "invoice_number": "MFG-2026005",
+        "invoice_date": "05/08/2026",
+        "currency": "INR",
+        "total": "16875.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-06",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 977,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "ORBIT MACHINE TOOLS",
+        "invoice_number": "MFG-2026006",
+        "invoice_date": "06/08/2026",
+        "currency": "INR",
+        "total": "18250.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-07",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 959,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "RIVERSTONE POLYMERS",
+        "invoice_number": "MFG-2026007",
+        "invoice_date": "07/08/2026",
+        "currency": "INR",
+        "total": "19625.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-08",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 965,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "SUMMIT ELECTRICALS",
+        "invoice_number": "MFG-2026008",
+        "invoice_date": "08/08/2026",
+        "currency": "INR",
+        "total": "21000.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-09",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 959,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "UNITY BEARINGS",
+        "invoice_number": "MFG-2026009",
+        "invoice_date": "09/08/2026",
+        "currency": "INR",
+        "total": "22375.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "synthetic-10",
+      "supported": true,
+      "status": "succeeded",
+      "duration_ms": 996,
+      "field_results": {
+        "supplier": true,
+        "invoice_number": true,
+        "invoice_date": true,
+        "currency": true,
+        "total": true
+      },
+      "field_values": {
+        "supplier": "WESTERN LOGISTICS",
+        "invoice_number": "MFG-2026010",
+        "invoice_date": "10/08/2026",
+        "currency": "INR",
+        "total": "23750.00"
+      },
+      "warnings": ["line_items_not_reliably_extracted"],
+      "diagnostic": null
+    },
+    {
+      "id": "malformed-signature",
+      "supported": false,
+      "status": "documented_unsupported",
+      "duration_ms": 0,
+      "field_results": {}
+    },
+    {
+      "id": "blank-no-text",
+      "supported": false,
+      "status": "documented_unsupported",
+      "duration_ms": 0,
+      "field_results": {}
+    }
+  ]
+}

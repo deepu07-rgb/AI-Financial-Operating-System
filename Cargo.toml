@@ -1,0 +1,28 @@
+[workspace]
+members = [
+  "apps/desktop/src-tauri",
+  "packages/document-store",
+  "packages/document-worker-client",
+  "packages/domain",
+  "packages/backup",
+  "packages/connector-sdk",
+  "packages/storage",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.85"
+license = "LicenseRef-Proprietary"
+publish = false
+
+# Developer and test artifacts are intentionally compact. Full debug symbols
+# and incremental object caches previously made this workspace exceed 20 GiB;
+# source-level diagnostics and backtraces remain available without them.
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false

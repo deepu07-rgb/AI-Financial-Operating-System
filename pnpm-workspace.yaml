@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+  - services/*
+  - packages/*
+  - connectors/*
+catalog:
+  echarts: 6.1.0
+  lucide-react: 1.27.0
+
+catalogMode: strict

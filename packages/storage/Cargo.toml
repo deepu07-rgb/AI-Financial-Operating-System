@@ -1,0 +1,19 @@
+[package]
+name = "aifos-storage"
+version = "0.1.0"
+description = "SQLite migrations and repositories for AIFOS company workspaces"
+edition = "2021"
+rust-version = "1.85"
+license = "LicenseRef-Proprietary"
+publish = false
+
+[dependencies]
+aifos-connector-sdk = { path = "../connector-sdk" }
+aifos-domain = { path = "../domain" }
+rusqlite = { version = "=0.40.1", default-features = false, features = ["backup", "bundled"] }
+serde_json = "=1.0.151"
+sha2 = { version = "=0.11.0", default-features = false }
+thiserror = "=2.0.19"
+
+[dev-dependencies]
+uuid = { version = "=1.24.0", features = ["v4"] }

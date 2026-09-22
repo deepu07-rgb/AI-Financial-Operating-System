@@ -1,0 +1,42 @@
+[
+  {
+    "name": "setuptools",
+    "version": "80.9.0",
+    "license": "MIT",
+    "homepage": "https://github.com/pypa/setuptools",
+    "description": "Exact PEP 517 build backend for packaging the worker",
+    "scope": "optional"
+  },
+  {
+    "name": "Pillow",
+    "version": "12.3.0",
+    "license": "MIT-CMU",
+    "homepage": "https://python-pillow.org/",
+    "description": "Image decoding and deterministic preprocessing",
+    "scope": "required"
+  },
+  {
+    "name": "pypdfium2",
+    "version": "5.12.1",
+    "license": "(Apache-2.0 OR BSD-3-Clause) AND LicenseRef-PDFium-Third-Party",
+    "homepage": "https://github.com/pypdfium2-team/pypdfium2",
+    "description": "Process-isolated PDF rasterization with bundled PDFium notices",
+    "scope": "required"
+  },
+  {
+    "name": "reportlab",
+    "version": "5.0.0",
+    "license": "BSD-3-Clause",
+    "homepage": "https://www.reportlab.com/opensource/",
+    "description": "Restricted local PDF rendering from frozen report contracts",
+    "scope": "required"
+  },
+  {
+    "name": "charset-normalizer",
+    "version": "3.4.9",
+    "license": "MIT",
+    "homepage": "https://github.com/jawah/charset_normalizer",
+    "description": "Exact ReportLab text-encoding runtime dependency",
+    "scope": "required"
+  }
+]

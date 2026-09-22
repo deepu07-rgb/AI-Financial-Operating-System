@@ -1,0 +1,7 @@
+[build]
+# All Cargo and Tauri commands share one disposable cache. This avoids the
+# historical root target + src-tauri/target duplication.
+target-dir = "target"
+
+[resolver]
+incompatible-rust-versions = "fallback"

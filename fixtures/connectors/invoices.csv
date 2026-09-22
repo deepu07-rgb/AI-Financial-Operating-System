@@ -1,0 +1,3 @@
+Transaction ID,Party ID,Party Name,Invoice,Date,Due Date,Amount,Currency,Direction
+T-001,V-001,Acme Components,AC-104,2026-08-01,2026-08-31,1250.00,INR,payable
+T-002,C-001,Metro Retail,MR-205,2026-08-02,,900.50,INR,receivable

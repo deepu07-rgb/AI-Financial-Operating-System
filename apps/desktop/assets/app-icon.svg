@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title description">
+  <title id="title">AIFOS application icon</title>
+  <desc id="description">A deep green rounded square with a lime architectural A mark and three finance bars.</desc>
+  <rect width="1024" height="1024" rx="224" fill="#153f35"/>
+  <path d="M210 738 420 262h104l210 476H602l-39-102H373l-39 102H210Zm202-209h112l-56-150-56 150Z" fill="#d9f36a"/>
+  <rect x="690" y="326" width="82" height="412" rx="41" fill="#f7faf4"/>
+  <rect x="796" y="430" width="82" height="308" rx="41" fill="#f7faf4" opacity=".78"/>
+  <path d="M214 808h664" stroke="#d9f36a" stroke-width="28" stroke-linecap="round" opacity=".42"/>
+</svg>
+

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.aifos.local/cloud-analysis-response-v1.json",
+  "title": "AIFOS cloud analysis response v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "requestId", "output", "execution"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "requestId": { "type": "string", "format": "uuid" },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "narrative",
+        "citations",
+        "assumptions",
+        "missingData",
+        "proposedActions",
+        "confidence",
+        "disclaimer"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "narrative": { "type": "string", "minLength": 1, "maxLength": 12000 },
+        "citations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claim", "sourceId", "sourceField", "sourceValue"],
+            "properties": {
+              "claim": { "type": "string", "minLength": 1, "maxLength": 1000 },
+              "sourceId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "sourceField": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,63}$"
+              },
+              "sourceValue": { "type": ["boolean", "number", "string", "null"] }
+            }
+          }
+        },
+        "assumptions": { "$ref": "#/$defs/textList" },
+        "missingData": { "$ref": "#/$defs/textList" },
+        "proposedActions": { "$ref": "#/$defs/textList" },
+        "confidence": { "enum": ["low", "medium", "high"] },
+        "disclaimer": {
+          "const": "Not accounting advice. Review source records and consult a qualified professional."
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["providerId", "modelId", "attempts", "cost"],
+      "properties": {
+        "providerId": { "type": "string" },
+        "modelId": { "type": "string" },
+        "attempts": { "type": "integer", "minimum": 1, "maximum": 2 },
+        "cost": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["currency", "inputUnits", "outputUnits", "costMicros"],
+          "properties": {
+            "currency": { "const": "USD" },
+            "inputUnits": { "type": "integer", "minimum": 0 },
+            "outputUnits": { "type": "integer", "minimum": 0 },
+            "costMicros": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "textList": {
+      "type": "array",
+      "maxItems": 32,
+      "items": { "type": "string", "minLength": 1, "maxLength": 1000 }
+    }
+  }
+}

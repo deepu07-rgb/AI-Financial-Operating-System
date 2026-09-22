@@ -1,0 +1,9 @@
+node_modules
+coverage
+dist
+target
+apps/desktop/src-tauri/gen
+.venv
+artifacts
+PRD and Guideline
+pnpm-lock.yaml

@@ -1,0 +1,3 @@
+externalId,invoiceNumber,amount,currency,effectiveDate,note
+BANK-UTR-0001,SAMPLE-001,12500.00,INR,2026-08-07,Sample bank reference reviewed by operator
+BANK-UTR-INVALID,MISSING-001,400.00,INR,2026-08-07,Intentional unmatched golden row

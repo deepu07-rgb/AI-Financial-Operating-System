@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aifos-document-worker"
+version = "0.1.0"
+description = "Restricted local document preprocessing and OCR worker for AIFOS"
+requires-python = ">=3.12,<3.15"
+license = { text = "LicenseRef-Proprietary" }
+dependencies = [
+  "Pillow==12.3.0",
+  "pypdfium2==5.12.1",
+  "reportlab==5.0.0",
+  "charset-normalizer==3.4.9",
+]
+
+[project.scripts]
+aifos-document-worker = "aifos_worker.main:main"
+
+[tool.setuptools]
+packages = ["aifos_worker"]

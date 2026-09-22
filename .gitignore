@@ -1,0 +1,25 @@
+node_modules/
+.pnpm-store/
+coverage/
+dist/
+target/
+apps/desktop/src-tauri/gen/
+apps/desktop/src-tauri/release-resources/
+artifacts/release/
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+tmp/
+.env
+.env.*
+!.env.example
+
+# Generated locally and checked for reproducibility by CI.
+artifacts/*.tmp
+
+# IDE and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

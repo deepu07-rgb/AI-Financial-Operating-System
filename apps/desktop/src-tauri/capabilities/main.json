@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-capability",
+  "description": "Minimum permissions for AIFOS. The webview has no filesystem, shell, HTTP, dialog, or direct updater-plugin permission; user-initiated updates cross bounded native commands.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

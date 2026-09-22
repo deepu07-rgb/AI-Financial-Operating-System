@@ -1,0 +1,21 @@
+{
+    "schemaVersion":  1,
+    "pythonVersion":  "3.13.13",
+    "pythonSource":  "https://www.python.org/ftp/python/3.13.13/python-3.13.13-embeddable-amd64.zip",
+    "pythonSha256":  "142666a4a9079507815d395b9bfb73546ec391003d385beb559a9d68fb240062",
+    "pythonSigner":  "CN=Python Software Foundation, O=Python Software Foundation, L=Beaverton, S=Oregon, C=US",
+    "pythonWheels":  [
+                         "Pillow==12.3.0",
+                         "pypdfium2==5.12.1",
+                         "reportlab==5.0.0",
+                         "charset-normalizer==3.4.9"
+                     ],
+    "tesseractVersion":  "5.5.3.20260724",
+    "tesseractSource":  "https://github.com/tesseract-ocr/tesseract/releases/download/5.5.3/tesseract-ocr-w64-setup-5.5.3.20260724.exe",
+    "tesseractSha256":  "bee9e3434bd94fd65387d9be28cd467a41f61b1275383b55b0f59a1331270ae4",
+    "tesseractSigner":  "CN=Universität Mannheim, O=Universität Mannheim, S=Baden-Württemberg, C=DE",
+    "tesseractSignatureStatus":  "UnknownError",
+    "englishModelVersion":  "eng.traineddata bundled by Tesseract 5.5.3.20260724",
+    "englishModelSource":  "https://github.com/tesseract-ocr/tessdata_fast",
+    "englishModelSha256":  "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+}
