@@ -42,13 +42,13 @@
     "verify": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm python:test && pnpm build:cloud-gateway && pnpm build:desktop && pnpm rust:format:check && pnpm rust:test && pnpm rust:clippy && pnpm release:check && pnpm licenses:check && pnpm sbom:check && pnpm secrets:check && pnpm size:check"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.5",
-    "@types/node": "22.14.1",
-    "eslint": "9.39.5",
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.3",
+    "eslint": "10.11.0",
     "eslint-plugin-react-hooks": "7.1.1",
-    "prettier": "3.9.6",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.66.0",
-    "vitest": "4.1.10"
+    "prettier": "3.9.9",
+    "typescript": "7.0.2",
+    "typescript-eslint": "8.70.1",
+    "vitest": "5.0.2"
   }
 }
